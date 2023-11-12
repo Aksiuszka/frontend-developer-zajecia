@@ -15,14 +15,13 @@ declare module "@mui/material/styles" {
 declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
     bold: true;
-
   }
 }
 
-const theme = createTheme({
+export const theme = createTheme({
   palette: {
     primary: {
-      main: colors.primary,
+      main: colors.main,
     },
     secondary: {
       main: colors.secondary,
@@ -30,7 +29,6 @@ const theme = createTheme({
   },
   typography: {
     bold: textStyles.bold,
-    },
+  },
+  components: {},
 });
-
-export default theme;
