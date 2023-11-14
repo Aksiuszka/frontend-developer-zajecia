@@ -18,18 +18,37 @@ export const BaseLayout: FC<{ children: ReactNode }> = ({ children }) => {
 
   return (
     <>
-      <Box justifyContent="space-between" alignItems="center" gap={4}>
+      <Box
+        justifyContent="space-between"
+        alignItems="center"
+        gap={4}
+      >
         <Header>
-          <List style={{ display:"flex" }}>
+          <List
+            style={{
+              display: "flex",
+              marginBlockEnd: "2rem",
+            }}
+          >
             {PAGES.map((page, i) => (
               <BoxDown key={page.title}>
                 <ListItem key={page.title} disablePadding>
                   <ListItemButton>
                     <Link
-                      style={{ textDecoration: "none", color: "#fff" }}
+                      style={{
+                        textDecoration: "none",
+                        color: "#fff",
+                      }}
                       to={page.path}
                     >
-                      <Typography>{page.title}</Typography>
+                      <Typography
+                        style={{
+                          fontFamily: "Poppins",
+                          fontSize: "1.23rem",
+                        }}
+                      >
+                        {page.title}
+                      </Typography>
                     </Link>
                   </ListItemButton>
                   {!PAGES[i - 2] ? <Dot /> : null}
@@ -37,7 +56,6 @@ export const BaseLayout: FC<{ children: ReactNode }> = ({ children }) => {
               </BoxDown>
             ))}
           </List>
-          <Dot />
         </Header>
       </Box>
       <Box height="calc(100vh - 150px)" overflow="hidden">

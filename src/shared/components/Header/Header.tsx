@@ -4,7 +4,14 @@ import Logo from "../../../assets/Logo.svg";
 
 export const Header: FC<{ children: ReactNode }> = ({ children }) => {
   return (
-    <Box height="120px" width="full" px={3} py={5} display="flex">
+    <Box
+      height="120px"
+      width="full"
+      px={3}
+      py={5}
+      display="flex"
+      alignItems="center"
+    >
       <img src={Logo} alt="logo" />
       <Box
         justifyContent="space-between"
