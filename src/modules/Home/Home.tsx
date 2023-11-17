@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import Ball from "../../assets/Ball.svg";
 import Sign from "../../assets/Sign.svg";
-import { Signature, Flex, AnimatedContainer, Card } from "./style";
+import { Signature } from "./style";
+import { AnimatedContainer, Card, Flex } from "../../shared/style";
 
 export default function Home() {
   const [isActive, setIsActive] = useState(false);
