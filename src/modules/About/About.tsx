@@ -1,19 +1,10 @@
-import { useState, useEffect } from "react";
 import Ball from "../../assets/Ball.svg";
 import { Flex, AnimatedContainer, Card } from "../../shared/style";
 import { Grid, Paper } from "@mui/material";
+import { useAnimation } from "../../shared/hooks/useAnimation";
 
 export default function About() {
-  const [isActive, setIsActive] = useState(false);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setIsActive(true);
-    }, 0);
-
-    return () => clearTimeout(timeout);
-  }, []);
-  //TODO: replace className with props
+    const isActive = useAnimation();
   return (
     <Flex>
       <AnimatedContainer className={isActive ? "active" : ""}>

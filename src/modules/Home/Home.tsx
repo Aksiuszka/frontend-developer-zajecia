@@ -1,20 +1,11 @@
-import { useState, useEffect } from "react";
 import Ball from "../../assets/Ball.svg";
 import Sign from "../../assets/Sign.svg";
 import { Signature } from "./style";
 import { AnimatedContainer, Card, Flex } from "../../shared/style";
+import { useAnimation } from "../../shared/hooks/useAnimation";
 
 export default function Home() {
-  const [isActive, setIsActive] = useState(false);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setIsActive(true);
-    }, 0);
-
-    return () => clearTimeout(timeout);
-  }, []);
-  //TODO: replace className with props
+  const isActive = useAnimation();
   return (
     <Flex>
       <AnimatedContainer className={isActive ? "active" : ""}>
