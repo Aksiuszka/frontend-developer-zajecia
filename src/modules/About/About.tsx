@@ -1,8 +1,9 @@
 import Ball from "../../assets/Ball.svg";
 import { Flex, AnimatedContainer, Card } from "../../shared/style";
-import { Grid, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useAnimation } from "../../shared/hooks/useAnimation";
 import AboutImg from "../../assets/About.svg";
+import { GridLayout } from "../../shared/components/layouts/GridLayout";
 
 export default function About() {
   const isActive = useAnimation();
@@ -12,11 +13,9 @@ export default function About() {
         <img src={Ball} alt="logo" />
       </AnimatedContainer>
       <Card className={isActive ? "active" : ""}>
-        <Grid container spacing={1} marginInline={6}>
-          <Grid item xs={12} lg={6}>
-            <img src={AboutImg} alt="about" />
-          </Grid>
-          <Grid item xs={12} lg={6}>
+        <GridLayout
+          left={<img src={AboutImg} alt="about" />}
+          right={
             <Typography
               style={{
                 fontFamily: "Poppins",
@@ -31,8 +30,8 @@ export default function About() {
               Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui
               officia deserunt mollit anim id est laborum.
             </Typography>
-          </Grid>
-        </Grid>
+          }
+        />
       </Card>
     </Flex>
   );
