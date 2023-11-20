@@ -5,11 +5,11 @@ type InputProps = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value: string;
   placeholder: string;
-  type: string;
+  type?: string;
   children: string;
-  sx: object;
-  multiline: boolean;
-  rows: number;
+  sx?: object;
+  multiline?: boolean;
+  rows?: number;
 };
 
 export const Input: FC<InputProps> = ({
@@ -24,7 +24,14 @@ export const Input: FC<InputProps> = ({
 }) => {
   return (
     <Stack>
-      <Typography>{children}</Typography>
+      <Typography
+        style={{
+          fontFamily: "Poppins",
+          fontSize: "1rem",
+        }}
+      >
+        {children}
+      </Typography>
       <TextField
         type={type}
         placeholder={placeholder}
@@ -32,7 +39,10 @@ export const Input: FC<InputProps> = ({
         onChange={onChange}
         variant="outlined"
         size="medium"
-        sx={sx}
+        sx={{
+          ...sx,
+          ...(multiline && { width: "115%", marginInlineStart: '-15px' }),
+        }}
         multiline={multiline}
         rows={rows}
       />
