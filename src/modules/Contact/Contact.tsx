@@ -18,8 +18,8 @@ export default function Contact() {
         <GridLayout left={<img src={ContactImg} alt="about" />} right={<></>} />
       </Card>
       <FormCard className={isActive ? "active" : ""}>
-        <Input placeholder="Jan Kowalski">Name</Input>
-        <Input placeholder="jan.kowalski@poczta.pl">Email</Input>
+        <Input placeholder="Jan Kowalski">Name:</Input>
+        <Input placeholder="jan.kowalski@poczta.pl">Email:</Input>
         <Input placeholder="Twoja wiadomość" multiline rows={5}></Input>
         <Button>Wyślij!!</Button>
       </FormCard>
