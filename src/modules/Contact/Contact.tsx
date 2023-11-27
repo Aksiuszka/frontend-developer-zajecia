@@ -21,7 +21,7 @@ export default function Contact() {
         <Input placeholder="Jan Kowalski">Name</Input>
         <Input placeholder="jan.kowalski@poczta.pl">Email</Input>
         <Input placeholder="Twoja wiadomość" multiline rows={5}></Input>
-        <Button>Wyślij</Button>
+        <Button>Wyślij!!</Button>
       </FormCard>
     </Flex>
   );
