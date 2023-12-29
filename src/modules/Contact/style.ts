@@ -1,6 +1,6 @@
 import { styled } from "@mui/material";
 
-export const FormCard = styled("div")({
+export const FormCard = styled("form")({
   position: "absolute",
   top: "50%",
   left: "75%",

@@ -2,14 +2,15 @@ import { Stack, TextField, Typography } from "@mui/material";
 import { FC } from "react";
 
 type InputProps = {
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  value: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
   placeholder: string;
   type?: string;
-  children: string;
+  children?: string;
   sx?: object;
   multiline?: boolean;
   rows?: number;
+  inputRef?: React.MutableRefObject<HTMLInputElement | null>;
 };
 
 export const Input: FC<InputProps> = ({
@@ -21,6 +22,7 @@ export const Input: FC<InputProps> = ({
   sx,
   multiline,
   rows,
+  inputRef,
 }) => {
   return (
     <Stack>
@@ -33,6 +35,7 @@ export const Input: FC<InputProps> = ({
         {children}
       </Typography>
       <TextField
+        inputRef={inputRef}
         type={type}
         placeholder={placeholder}
         value={value}
@@ -41,7 +44,7 @@ export const Input: FC<InputProps> = ({
         size="medium"
         sx={{
           ...sx,
-          ...(multiline && { width: "115%", marginInlineStart: '-15px' }),
+          ...(multiline && { width: "115%", marginInlineStart: "-15px" }),
         }}
         multiline={multiline}
         rows={rows}
