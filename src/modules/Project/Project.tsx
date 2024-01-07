@@ -4,6 +4,7 @@ import {
   useGetPokemonByTypeQuery,
 } from "../../services/baseApi";
 import {
+  Box,
   MenuItem,
   Paper,
   Select,
@@ -15,7 +16,11 @@ import {
   TableRow,
   TextField,
 } from "@mui/material";
-import { COLUMN_DEFINITION } from "../../constants/columnDefinition";
+import {
+  LEFT_COLUMN_DEFINITION,
+  RIGHT_COLUMN_DEFINITION,
+} from "../../constants/columnDefinition";
+import { theme } from "../../theme";
 
 function Project() {
   const [collapsed, setCollapsed] = useState(false);
@@ -29,11 +34,13 @@ function Project() {
   } = useGetPokemonByTypeQuery(filterValue);
 
   const onSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFilterValue("");
     setSearchValue(event.target.value);
   };
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     const selectedValue = event.target.value as string;
+    setSearchValue("");
     setFilterValue(selectedValue);
   };
 
@@ -42,66 +49,141 @@ function Project() {
         {
           key: data?.id || 0,
           name: data?.name || "Jeszcze nic nie wyszukałeś",
-          type: data?.types?.[0]?.type?.name || "Jeszcze nic nie wyszukałeś",
-          class: data?.species?.name || "Jeszcze nic nie wyszukałeś",
+          type: data?.types?.[0]?.type?.name || "",
+          class: data?.species?.name || "",
         },
       ]
     : [];
-
-  if (filterData) {
-    dataSource.push({
-      key: filterData?.id || 0,
-      name: filterData?.name || "Jeszcze nic nie wyszukałeś",
-      type: filterData?.types?.[0]?.type?.name || "Jeszcze nic nie wyszukałeś",
-      class: filterData?.species?.name || "Jeszcze nic nie wyszukałeś",
-    });
-  }
-
-  console.log(filterData);
   return (
     <div>
-      <TableContainer component={Paper}>
+      <Box
+        sx={{
+          backgroundColor: "white",
+          display: "flex",
+          gap: 5,
+          p: 5,
+        }}
+      >
         <TextField
           type="search"
           placeholder="Wpisz pokemona"
           onChange={onSearch}
+          sx={{
+            width: 220,
+            fontFamily: "Poppins",
+          }}
         />
         <Select
           defaultValue="electric"
-          style={{ width: 120 }}
+          sx={{
+            width: 120,
+            fontFamily: "Poppins",
+          }}
           onChange={handleChange}
-          options={[
-            { value: "electric", label: "Electric" },
-            { value: "bug", label: "Bug" },
-            { value: "normal", label: "Normal" },
-          ]}
         >
-          <MenuItem value={"electric"}>Electric</MenuItem>
-          <MenuItem value={"bug"}>Bug</MenuItem>
-          <MenuItem value={"normal"}>Normal</MenuItem>
+          {[
+            "normal",
+            "fighting",
+            "flying",
+            "poison",
+            "ground",
+            "rock",
+            "bug",
+            "ghost",
+            "steel",
+            "electric",
+            "fire",
+            "water",
+            "grass",
+            "psychic",
+            "ice",
+            "dragon",
+            "dark",
+            "fairy",
+            "unknown",
+            "shadow",
+          ].map((type) => (
+            <MenuItem key={type} value={type}>
+              {type.charAt(0).toUpperCase() + type.slice(1)}
+            </MenuItem>
+          ))}
         </Select>
-
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      </Box>
+      <TableContainer
+        component={Paper}
+        sx={{ display: "flex", p: 5, minHeight: "100vh" }}
+      >
+        <Table sx={{ width: "50%", height: "100%" }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              {COLUMN_DEFINITION.map((column) => (
-                <TableCell key={column.key}>{column.title}</TableCell>
+              {LEFT_COLUMN_DEFINITION.map((column) => (
+                <TableCell sx={{ fontFamily: "Poppins" }} key={column.key}>
+                  {column.title}
+                </TableCell>
               ))}
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              {dataSource.map((row) => (
+            {filterData?.pokemon &&
+              filterData?.pokemon.map((row) => (
                 <>
-                  <TableCell component="th" scope="row">
-                    {row.name}
-                  </TableCell>
-                  <TableCell align="left">{row.type}</TableCell>
-                  <TableCell align="left">{row.class}</TableCell>
+                  <TableRow>
+                    <TableCell sx={{ fontFamily: "Poppins" }}>
+                      {filterValue}
+                    </TableCell>
+                    <TableCell sx={{ fontFamily: "Poppins" }}>
+                      {row.pokemon.name.charAt(0).toUpperCase() +
+                        row.pokemon.name.slice(1) || ""}
+                    </TableCell>
+                    <TableCell sx={{ fontFamily: "Poppins" }}>
+                      {filterValue}
+                    </TableCell>
+                  </TableRow>
                 </>
               ))}
+            {dataSource &&
+              dataSource.map((row) => (
+                <TableRow
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell
+                    sx={{ fontFamily: "Poppins" }}
+                    component="th"
+                    scope="row"
+                  >
+                    {row.name.charAt(0).toUpperCase() + row.name.slice(1) || ""}
+                  </TableCell>
+                  <TableCell sx={{ fontFamily: "Poppins" }} align="left">
+                    {row.type}
+                  </TableCell>
+                  <TableCell sx={{ fontFamily: "Poppins" }} align="left">
+                    {row.class}
+                  </TableCell>
+                </TableRow>
+              ))}
+          </TableBody>
+        </Table>
+        <Table aria-label="simple table" sx={{ width: "50%" }}>
+          <TableHead>
+            <TableRow>
+              {RIGHT_COLUMN_DEFINITION.map((column) => (
+                <TableCell
+                  sx={{ fontFamily: "Poppins", paddingInlineStart: "30px" }}
+                  key={column.key}
+                >
+                  {column.title}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody sx={{}}>
+            <TableRow>
+              {filterData &&
+                filterData?.moves?.map((move) => (
+                  <p style={{ fontFamily: "Poppins", marginLeft: "30px" }}>
+                    {move.name}
+                  </p>
+                ))}
             </TableRow>
           </TableBody>
         </Table>

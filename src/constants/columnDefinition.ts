@@ -1,4 +1,4 @@
-export const COLUMN_DEFINITION = [
+export const LEFT_COLUMN_DEFINITION = [
   {
     title: "Type",
     dataIndex: "type",
@@ -13,5 +13,23 @@ export const COLUMN_DEFINITION = [
     title: "Class",
     dataIndex: "class",
     key: "class",
+  },
+];
+
+export const RIGHT_COLUMN_DEFINITION = [
+  {
+    title: "Moves",
+    dataIndex: "moves",
+    key: "moves",
+  },
+  {
+    title: "",
+    dataIndex: "",
+    key: "",
+  },
+  {
+    title: "",
+    dataIndex: "",
+    key: "",
   },
 ];

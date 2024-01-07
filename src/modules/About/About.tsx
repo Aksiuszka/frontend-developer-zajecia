@@ -17,7 +17,7 @@ export default function About() {
           left={<img src={AboutImg} alt="about" />}
           right={
             <Typography
-              style={{
+              sx={{
                 fontFamily: "Poppins",
                 fontSize: "1rem",
               }}
