@@ -14,6 +14,11 @@ export const LEFT_COLUMN_DEFINITION = [
     dataIndex: "class",
     key: "class",
   },
+  {
+    title: "Sprite",
+    dataIndex: "sprite",
+    key: "sprite",
+  },
 ];
 
 export const RIGHT_COLUMN_DEFINITION = [

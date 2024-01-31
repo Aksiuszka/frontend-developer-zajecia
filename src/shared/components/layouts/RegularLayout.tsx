@@ -18,11 +18,7 @@ export const BaseLayout: FC<{ children: ReactNode }> = ({ children }) => {
 
   return (
     <>
-      <Box
-        justifyContent="space-between"
-        alignItems="center"
-        gap={4}
-      >
+      <Box justifyContent="space-between" alignItems="center" gap={4}>
         <Header>
           <List
             style={{
@@ -58,7 +54,7 @@ export const BaseLayout: FC<{ children: ReactNode }> = ({ children }) => {
           </List>
         </Header>
       </Box>
-      <Box height="calc(100vh - 150px)" overflow="hidden">
+      <Box height="calc(100vh - 150px)" overflow="visible">
         {children}
       </Box>
     </>
