@@ -9,15 +9,15 @@ import { useEffect, useState } from "react";
 export default function About() {
   const isActive = useAnimation();
 
-  const [sampleString, setSampleString] = useState("");
+  const [days, setDays] = useState([]);
 
   useEffect(() => {
-    fetch("/api/sample")
+    fetch("/api/days")
       .then((response) => response.json())
-      .then((data) => setSampleString(data))
-      .catch((error) => console.error("Error fetching sample string:", error));
-    console.log(sampleString, "!!!!!!!");
-  }, []);
+      .then((data) => setDays(data))
+      .catch((error) => console.error("Error fetching days:", error));
+    console.log(days, "days");
+  }, [days]);
   return (
     <Flex>
       <AnimatedContainer className={isActive ? "active" : ""}>
