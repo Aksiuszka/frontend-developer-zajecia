@@ -4,9 +4,20 @@ import { Typography } from "@mui/material";
 import { useAnimation } from "../../shared/hooks/useAnimation";
 import AboutImg from "../../assets/About.svg";
 import { GridLayout } from "../../shared/components/layouts/GridLayout";
+import { useEffect, useState } from "react";
 
 export default function About() {
   const isActive = useAnimation();
+
+  const [sampleString, setSampleString] = useState("");
+
+  useEffect(() => {
+    fetch("/api/sample")
+      .then((response) => response.json())
+      .then((data) => setSampleString(data))
+      .catch((error) => console.error("Error fetching sample string:", error));
+    console.log(sampleString, "!!!!!!!");
+  }, []);
   return (
     <Flex>
       <AnimatedContainer className={isActive ? "active" : ""}>

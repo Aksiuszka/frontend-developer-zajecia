@@ -8,6 +8,11 @@ import { GlobalStyles } from "@mui/styled-engine-sc";
 import { globalStyles } from "./theme/global.ts";
 import { Provider } from "react-redux";
 import { store } from "./store/store.ts";
+import { makeServer } from "./services/mockServer/mockServer.ts";
+
+if (import.meta.env.MODE === 'development') {
+  makeServer({ environment: 'development' });
+}
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
